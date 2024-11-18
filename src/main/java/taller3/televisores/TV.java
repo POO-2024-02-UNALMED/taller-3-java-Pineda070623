@@ -1,4 +1,4 @@
-package televisores;
+package taller3.televisores;
 
 public class TV {
     private Marca marca;
@@ -12,7 +12,7 @@ public class TV {
     public TV(Marca marca, boolean estado) {
         this.marca = marca;
         this.estado = estado;
-        numTV++;
+        TV.numTV++;
     }
 
     public static int getNumTV() {
@@ -24,55 +24,47 @@ public class TV {
     }
 
     public void turnOn() {
-        estado = true;
+        this.estado = true;
     }
 
     public void turnOff() {
-        estado = false;
+        this.estado = false;
     }
 
     public void canalUp() {
-        setCanal(canal + 1);
+        if (estado && canal < 120) {
+            canal++;
+        }
     }
 
     public void canalDown() {
-        setCanal(canal - 1);
+        if (estado && canal > 1) {
+            canal--;
+        }
     }
 
     public void volumenUp() {
-        setVolumen(volumen + 1);
+        if (estado && volumen < 7) {
+            volumen++;
+        }
     }
 
     public void volumenDown() {
-        setVolumen(volumen - 1);
+        if (estado && volumen > 0) {
+            volumen--;
+        }
     }
 
     public Marca getMarca() {
         return marca;
     }
 
-    public int getCanal() {
-        return canal;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public int getVolumen() {
-        return volumen;
-    }
-
-    public Control getControl() {
-        return control;
-    }
-
-    public boolean getEstado() {
-        return estado;
-    }
-
     public void setMarca(Marca marca) {
         this.marca = marca;
+    }
+
+    public int getCanal() {
+        return canal;
     }
 
     public void setCanal(int canal) {
@@ -81,14 +73,30 @@ public class TV {
         }
     }
 
+    public int getPrecio() {
+        return precio;
+    }
+
     public void setPrecio(int precio) {
         this.precio = precio;
+    }
+
+    public int getVolumen() {
+        return volumen;
     }
 
     public void setVolumen(int volumen) {
         if (estado && volumen >= 0 && volumen <= 7) {
             this.volumen = volumen;
         }
+    }
+
+    public boolean getEstado() {
+        return estado;
+    }
+
+    public Control getControl() {
+        return control;
     }
 
     public void setControl(Control control) {
