@@ -1,24 +1,20 @@
+package televisores;
+
 public class TV {
-    private Marca marca; // Marca asociada al televisor
-    private int canal;   // Canal actual
-    private int precio;  // Precio del televisor
-    private boolean estado; // Estado: encendido (true) o apagado (false)
-    private int volumen; // Volumen actual
-    private Control control; // Control remoto asociado
+    private Marca marca;
+    private int canal = 1;
+    private int precio = 500;
+    private boolean estado;
+    private int volumen = 1;
+    private Control control;
+    private static int numTV = 0;
 
-    private static int numTV = 0; // Contador de televisores creados (atributo de clase)
-
-    // Constructor
     public TV(Marca marca, boolean estado) {
         this.marca = marca;
         this.estado = estado;
-        this.canal = 1;   // Valor por defecto
-        this.volumen = 1; // Valor por defecto
-        this.precio = 500; // Valor por defecto
-        numTV++; // Incrementamos el contador de televisores creados
+        numTV++;
     }
 
-    // Métodos de clase para el contador
     public static int getNumTV() {
         return numTV;
     }
@@ -27,30 +23,56 @@ public class TV {
         TV.numTV = numTV;
     }
 
-    // Métodos para encender y apagar el televisor
     public void turnOn() {
-        this.estado = true;
+        estado = true;
     }
 
     public void turnOff() {
-        this.estado = false;
+        estado = false;
+    }
+
+    public void canalUp() {
+        setCanal(canal + 1);
+    }
+
+    public void canalDown() {
+        setCanal(canal - 1);
+    }
+
+    public void volumenUp() {
+        setVolumen(volumen + 1);
+    }
+
+    public void volumenDown() {
+        setVolumen(volumen - 1);
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public int getCanal() {
+        return canal;
+    }
+
+    public int getPrecio() {
+        return precio;
+    }
+
+    public int getVolumen() {
+        return volumen;
+    }
+
+    public Control getControl() {
+        return control;
     }
 
     public boolean getEstado() {
         return estado;
     }
 
-    // Métodos para cambiar de canal
-    public void canalUp() {
-        if (estado && canal < 120) {
-            canal++;
-        }
-    }
-
-    public void canalDown() {
-        if (estado && canal > 1) {
-            canal--;
-        }
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
     public void setCanal(int canal) {
@@ -59,21 +81,8 @@ public class TV {
         }
     }
 
-    public int getCanal() {
-        return canal;
-    }
-
-    // Métodos para cambiar el volumen
-    public void volumenUp() {
-        if (estado && volumen < 7) {
-            volumen++;
-        }
-    }
-
-    public void volumenDown() {
-        if (estado && volumen > 0) {
-            volumen--;
-        }
+    public void setPrecio(int precio) {
+        this.precio = precio;
     }
 
     public void setVolumen(int volumen) {
@@ -82,32 +91,7 @@ public class TV {
         }
     }
 
-    public int getVolumen() {
-        return volumen;
-    }
-
-    // Métodos para atributos adicionales
-    public void setPrecio(int precio) {
-        this.precio = precio;
-    }
-
-    public int getPrecio() {
-        return precio;
-    }
-
-    public void setMarca(Marca marca) {
-        this.marca = marca;
-    }
-
-    public Marca getMarca() {
-        return marca;
-    }
-
     public void setControl(Control control) {
         this.control = control;
-    }
-
-    public Control getControl() {
-        return control;
     }
 }
